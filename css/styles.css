@@ -47,25 +47,155 @@ img {
     height: auto;
     display: block;
 }
-/*#hero {
+.hero{
     position: relative;
-    width: 100%;
-    height: 60vh;
+    height: 100vh;
     overflow: hidden;
 }
-/*/*.hero-bg-img {
-    position: absolute;
-    top: 0;
-    left: 0;
+
+.hero-img{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 1;
+    display: block;
 }
 
-#hero {
-    height: 90vh; /* Prend 90% de la hauteur de l'écran */
-    display: flex;
-    align-items: center;
-    overflow: hidden;
+.hero-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+.stat-card{
+    background-color: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+
+.stat-card:hover{
+    transform: translateY(-5px);
+}
+
+.stat-card h2{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.stat-card p{
+    margin: 0;
+    font-size: 1rem;
+}
+
+.btn-outline-danger:hover {
+    background-color: #db5c6c !important;
+    color: white !important;
+    border-color: #db5c6c !important;
+    transition: all 0.3s ease;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* La carte monte légèrement */
+    box-shadow: 0 10px 20px rgba(219, 92, 108, 0.2) !important; /* Ombre rosée */
+}
+.bento-grid {
+    display: grid;
+    
+    grid-template-columns: repeat(3, 1fr);
+    
+    grid-auto-rows: minmax(150px, auto);
+    gap: 20px;
+}
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-auto-rows: 200px;
+    gap: 20px;
+}
+.bento-item{
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.bento-item:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background-color: #dc3545 !important;
+    color: white;
+}
+
+.bento-item:hover i{
+    color: white !important;
+}
+.card{
+    transition: all 0.3s ease;
+}
+
+.card:hover{
+    transform: translateY(-10px);
+    background-color: #dc3545 !important;
+    color: white !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.card:hover i,
+.card:hover h4{
+    color: white !important;
+}
+.item-large {
+    grid-column: span 2;
+}
+
+
+.item-tall {
+    grid-row: span 2;
+}
+.temoignage-card{
+    max-width: 700px;
+}
+
+.temoignage-card img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 15px;
+}
+
+.temoignage-card i{
+    color: #ffc107;
+    font-size: 18px;
+}
+.cta{
+    background: #dc3545;
+    color: white;
+}
+
+.cta h2{
+    font-weight: 700;
+}
+
+.cta p{
+    max-width: 700px;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.cta .btn{
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
 }
