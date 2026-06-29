@@ -199,3 +199,10 @@ img {
     border-radius: 30px;
     font-weight: 600;
 }
+/* Ajoute ça dans ton fichier style.css */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: white;
+        padding: 10px;
+    }
+}
