@@ -1,12 +1,12 @@
 
-: root {
-    font-main:'Inter',sans-serif;
-    font-heading: 'Poppins' , sans-serif;
-    primary-color: #db5c6c;
-    secondary-color: #f59e0b;
-    text-color: #334155;
-    background-color: #ffffff;
-    spacing-md: 1rem;
+:root{
+    --font-main:'Inter',sans-serif;
+    --font-heading:'Poppins',sans-serif;
+    --primary-color:#db5c6c;
+    --secondary-color:#f59e0b;
+    --text-color:#334155;
+    --background-color:#ffffff;
+    --spacing-md:1rem;
 }
 * {
     margin: 0;
@@ -21,43 +21,96 @@ body {
     line-height: 1.6;
 
 }
+body.dark-mode {
+    --text-color: #e2e8f0;
+    --background-color: #0f172a;
+}
+body.dark-mode .text-dark,
+body.dark-mode .text-muted {
+    color: var(--text-color) !important;
+}
+body.dark-mode .bg-white .text-dark,
+body.dark-mode .bg-white .text-muted,
+body.dark-mode .card .text-dark,
+body.dark-mode .card .text-muted {
+    color: #334155 !important;
+}
+
 h1, h2, h3, .navbar-brand {
     font-family: 'Poppins' , sans-serif;
     font-weight: 700;
 }
 .navbar {
-    background-color: var(--primary-color);!important;
+    background-color: var(--primary-color) !important; 
     border-bottom: none !important;
+    transition: all 0.3s ease;
+}
+.navbar.scrolled {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .navbar-brand {
-    color: #db5c6c !important;
+    color: white !important;
     font-size: 1.5rem;
 
 }
+body > section.container,
+.bg-light {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+}
 .nav-link {
-    color: var(--text-color); !important;
+    color: var(--text-color) !important;
 }
 
 #hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
 }
+.hero-stats {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
+
+*.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+.stats-section {
+    margin-top: -80px;
+    position: relative;
+    z-index: 3;
+}
+
+#hero {
+    height: 90vh; 
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
 .hero{
     position: relative;
     height: 100vh;
-    overflow: hidden;
 }
 
 .hero-img{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
 .hero-content{
@@ -95,29 +148,24 @@ img {
     margin: 0;
     font-size: 1rem;
 }
-
-.btn-outline-danger:hover {
-    background-color: #db5c6c !important;
-    color: white !important;
-    border-color: #db5c6c !important;
+.service-card {
     transition: all 0.3s ease;
+    cursor: pointer;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-radius: 10px;
 }
 
-.card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2) !important;
+    background-color: var(--primary-color) !important;
+    color: white;
 }
 
-.card:hover {
-    transform: translateY(-5px); /* La carte monte légèrement */
-    box-shadow: 0 10px 20px rgba(219, 92, 108, 0.2) !important; /* Ombre rosée */
-}
-.bento-grid {
-    display: grid;
-    
-    grid-template-columns: repeat(3, 1fr);
-    
-    grid-auto-rows: minmax(150px, auto);
-    gap: 20px;
+.service-card:hover i,
+.service-card:hover h4 {
+    color: white !important;
 }
 .bento-grid {
     display: grid;
@@ -125,6 +173,8 @@ img {
     grid-auto-rows: 200px;
     gap: 20px;
 }
+
+
 .bento-item{
     transition: all 0.3s ease;
     cursor: pointer;
@@ -133,28 +183,14 @@ img {
 .bento-item:hover{
     transform: translateY(-10px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    background-color: #dc3545 !important;
+    background-color: var(--primary-color) !important;
     color: white;
 }
 
 .bento-item:hover i{
     color: white !important;
 }
-.card{
-    transition: all 0.3s ease;
-}
 
-.card:hover{
-    transform: translateY(-10px);
-    background-color: #dc3545 !important;
-    color: white !important;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-.card:hover i,
-.card:hover h4{
-    color: white !important;
-}
 .item-large {
     grid-column: span 2;
 }
@@ -199,10 +235,151 @@ img {
     border-radius: 30px;
     font-weight: 600;
 }
-/* Ajoute ça dans ton fichier style.css */
-@media (max-width: 991px) {
-    .navbar-collapse {
-        background-color: white;
-        padding: 10px;
+
+.contact-hero h1{
+    font-weight: 700;
+}
+
+form .form-control{
+    border-radius: 10px;
+}
+
+form .btn{
+    padding: 10px 25px;
+    border-radius: 30px;
+}
+form .form-control{
+    border-radius:10px;
+}
+
+form textarea{
+    resize:none;
+}
+
+iframe{
+    border-radius:10px;
+}
+/* ==========================
+   RESPONSIVE TABLETTE
+========================== */
+
+@media screen and (max-width: 768px) {
+
+    .hero {
+        height: auto;
     }
+
+    .hero-content {
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .stat-card {
+        margin-bottom: 20px;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .item-large,
+    .item-tall {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .service-card {
+        margin-bottom: 20px;
+    }
+
+    .temoignage-card {
+        width: 100%;
+    }
+
+    .cta h2 {
+        font-size: 2rem;
+    }
+
+    footer {
+        text-align: center;
+    }
+
+}
+
+/* ==========================
+   RESPONSIVE MOBILE
+========================== */
+
+@media screen and (max-width: 576px) {
+
+    body {
+        padding-top: 70px;
+    }
+
+    .hero {
+        height: auto;
+    }
+
+    .hero-content {
+        padding: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem;
+    }
+
+    .hero-content .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .stat-card {
+        margin-bottom: 15px;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        margin-bottom: 20px;
+    }
+
+    .cta {
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .cta h2 {
+        font-size: 1.6rem;
+    }
+
+    .cta .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    iframe {
+        height: 300px;
+    }
+
+    footer .col-md-3 {
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
 }
