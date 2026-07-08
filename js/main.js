@@ -38,6 +38,25 @@ window.addEventListener("scroll", function () {
     }
 
 });
+// ======================
+// ANIMATION FADE-IN AU SCROLL
+// ======================
+
+const fadeElements = document.querySelectorAll('.fade-in');
+
+const fadeObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, {
+    threshold: 0.2
+});
+
+fadeElements.forEach(function (el) {
+    fadeObserver.observe(el);
+});
 
 // ======================
 // BOUTON RETOUR EN HAUT
@@ -62,4 +81,39 @@ backToTop.addEventListener("click", function () {
         behavior: "smooth"
     });
 
+});
+// ======================
+// COMPTEURS ANIMÉS AU SCROLL
+// ======================
+
+const counters = document.querySelectorAll('.counter');
+
+const counterObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.getAttribute('data-target'));
+            let current = 0;
+            const increment = target / 100; // vitesse de l'animation
+
+            const updateCounter = function () {
+                current += increment;
+                if (current < target) {
+                    el.textContent = Math.ceil(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    el.textContent = target;
+                }
+            };
+
+            updateCounter();
+            counterObserver.unobserve(el); // anime une seule fois
+        }
+    });
+}, {
+    threshold: 0.5
+});
+
+counters.forEach(function (el) {
+    counterObserver.observe(el);
 });
