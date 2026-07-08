@@ -82,33 +82,48 @@
 
             <h3 class="mb-4">Envoyez-nous un message</h3>
 
-            <form>
+            <form id="contactForm" novalidate>
 
-                <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Nom">
-                </div>
+    <div class="mb-3">
+        <input type="text" class="form-control" id="nom" placeholder="Nom">
+        <div class="invalid-feedback" id="error-nom"></div>
+    </div>
 
-                <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Prénom">
-                </div>
+    <div class="mb-3">
+        <input type="text" class="form-control" id="prenom" placeholder="Prénom">
+        <div class="invalid-feedback" id="error-prenom"></div>
+    </div>
 
-                <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Adresse e-mail">
-                </div>
+    <div class="mb-3">
+        <input type="email" class="form-control" id="email" placeholder="Adresse e-mail">
+        <div class="invalid-feedback" id="error-email"></div>
+    </div>
 
-                <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Sujet">
-                </div>
+    <div class="mb-3">
+        <select class="form-control" id="sujet">
+            <option value="">Choisissez un sujet</option>
+            <option value="freelance">Je suis freelance</option>
+            <option value="entreprise">Je cherche un freelance</option>
+            <option value="support">Support technique</option>
+            <option value="autre">Autre</option>
+        </select>
+        <div class="invalid-feedback" id="error-sujet"></div>
+    </div>
 
-                <div class="mb-3">
-                    <textarea class="form-control" rows="6" placeholder="Votre message"></textarea>
-                </div>
+    <div class="mb-3">
+        <textarea class="form-control" id="message" rows="6" placeholder="Votre message"></textarea>
+        <div class="invalid-feedback" id="error-message"></div>
+    </div>
 
-                <button class="btn btn-danger">
-                    Envoyer le message
-                </button>
+    <button type="submit" class="btn btn-danger">
+        Envoyer le message
+    </button>
 
-            </form>
+    <div class="alert alert-success mt-3 d-none" id="successMessage">
+        Votre message a bien été envoyé ! Nous vous répondrons rapidement.
+    </div>
+
+</form>
 
         </div>
 

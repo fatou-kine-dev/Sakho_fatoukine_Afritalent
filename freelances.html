@@ -45,42 +45,42 @@
 
 
     <section class="container my-4">
-        <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
-            <button class="btn btn-danger px-3">Tous</button>
-            <button class="btn btn-outline-danger px-3">Développement</button>
-            <button class="btn btn-outline-danger px-3">Design</button>
-            <button class="btn btn-outline-danger px-3">Data & IA</button>
-        </div>
+       <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
+    <button class="btn btn-danger px-3 filter-btn active" data-filter="tous">Tous</button>
+    <button class="btn btn-outline-danger px-3 filter-btn" data-filter="developpement">Développement</button>
+    <button class="btn btn-outline-danger px-3 filter-btn" data-filter="design">Design</button>
+    <button class="btn btn-outline-danger px-3 filter-btn" data-filter="data">Data & IA</button>
+</div>
 
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-4 text-center">
-                <label class="form-label small fw-bold text-muted mb-2">Recherche précise par domaine :</label>
-                <select class="form-select shadow-sm">
-                    <option>Toutes les catégories</option>
-                    <option>Développement Web</option>
-                    <option>Développement Mobile</option>
-                    <option>Design UI/UX</option>
-                    <option>Data Science & IA</option>
-                    <option>Cloud & DevOps</option>
-                </select>
-            </div>
-        </div>
+<div class="row justify-content-center mb-5">
+    <div class="col-md-4 text-center">
+        <label class="form-label small fw-bold text-muted mb-2">Recherche précise par domaine :</label>
+        <select class="form-select shadow-sm" id="domainFilter">
+            <option value="toutes">Toutes les catégories</option>
+            <option value="web">Développement Web</option>
+            <option value="mobile">Développement Mobile</option>
+            <option value="uiux">Design UI/UX</option>
+            <option value="data">Data Science & IA</option>
+            <option value="devops">Cloud & DevOps</option>
+        </select>
+    </div>
+</div>
     </section>
 
     <main class="container mb-5">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             
-            <div class="col">
+            <div class="col" data-category="data" data-domain="data">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="ratio ratio-1x1 w-100 bg-secondary rounded-top">
-                        <img src="images/images 1-1.jpg" class="card-img-top object-fit-cover" alt="Fatou Sall">
+                        <img src="images/images 1-1.jpg" class="card-img-top object-fit-cover" alt="Banna soumaré">
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-2">
                             <span class="text-muted small fw-bold">Data Science</span>
                             <span class="fw-bold text-dark small">50 000 F / h</span>
                         </div>
-                        <h5 class="card-title fw-bold mb-1">Fatou Sall</h5>
+                        <h5 class="card-title fw-bold mb-1">Banna soumré</h5>
                         <p class="card-text text-muted small">Ingénieure Data spécialisée dans les modèles prédictifs.</p>
                     </div>
                     <div class="card-footer bg-white border-0 pb-3">
@@ -89,7 +89,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col" data-category="design" data-domain="uiux">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="ratio ratio-1x1 w-100 bg-secondary rounded-top">
                         <img src="images/images 2-2.jpg" class="card-img-top object-fit-cover" alt="Moussa Ndiaye">
@@ -99,7 +99,7 @@
                             <span class="text-muted small fw-bold">Design UI/UX</span>
                             <span class="fw-bold text-dark small">45 000 F / h</span>
                         </div>
-                        <h5 class="card-title fw-bold mb-1">Moussa Ndiaye</h5>
+                        <h5 class="card-title fw-bold mb-1">Mouhamed sakho</h5>
                         <p class="card-text text-muted small">Concepteur d'interfaces modernes et centrées sur l'utilisateur.</p>
                     </div>
                     <div class="card-footer bg-white border-0 pb-3">
@@ -108,7 +108,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col" data-category="developpement" data-domain="mobile">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="ratio ratio-1x1 w-100 bg-secondary rounded-top">
                         <img src="images/images 3-3.jpg" class="card-img-top object-fit-cover" alt="Amadou Diallo">
@@ -118,7 +118,7 @@
                             <span class="text-muted small fw-bold">Dev Mobile</span>
                             <span class="fw-bold text-dark small">60 000 F / h</span>
                         </div>
-                        <h5 class="card-title fw-bold mb-1">Amadou Diallo</h5>
+                        <h5 class="card-title fw-bold mb-1">Maty Mbaye</h5>
                         <p class="card-text text-muted small">Expert Flutter pour des applications iOS et Android fluides.</p>
                     </div>
                     <div class="card-footer bg-white border-0 pb-3">
@@ -127,7 +127,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col" data-category="developpement" data-domain="web">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="ratio ratio-1x1 w-100 bg-secondary rounded-top">
                         <img src="images/images 4-4.jpg" class="card-img-top object-fit-cover" alt="Ibrahima Ba">
@@ -137,7 +137,7 @@
                             <span class="text-muted small fw-bold">Web</span>
                             <span class="fw-bold text-dark small">40 000 F / h</span>
                         </div>
-                        <h5 class="card-title fw-bold mb-1">Ibrahima Ba</h5>
+                        <h5 class="card-title fw-bold mb-1">Saliou sakho</h5>
                         <p class="card-text text-muted small">Consultant SEO expert en acquisition de trafic web.</p>
                     </div>
                     <div class="card-footer bg-white border-0 pb-3">
@@ -146,7 +146,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col"  data-category="developpement" data-domain="devops">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="ratio ratio-1x1 w-100 bg-secondary rounded-top">
                         <img src="images/images 5-5.jpg" class="card-img-top object-fit-cover" alt="Khadija Kane">
@@ -156,7 +156,7 @@
                             <span class="text-muted small fw-bold">DevOps</span>
                             <span class="fw-bold text-dark small">75 000 F / h</span>
                         </div>
-                        <h5 class="card-title fw-bold mb-1">Khadija Kane</h5>
+                        <h5 class="card-title fw-bold mb-1">Adama Ndiaye</h5>
                         <p class="card-text text-muted small">Architecture AWS et pipelines CI/CD automatisés.</p>
                     </div>
                     <div class="card-footer bg-white border-0 pb-3">
@@ -165,7 +165,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col" data-category="developpement" data-domain="web">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="ratio ratio-1x1 w-100 bg-secondary rounded-top">
                         <img src="images/images 6-6.jpg" class="card-img-top object-fit-cover" alt="Omar Sy">
@@ -175,7 +175,7 @@
                             <span class="text-muted small fw-bold">Backend</span>
                             <span class="fw-bold text-dark small">55 000 F / h</span>
                         </div>
-                        <h5 class="card-title fw-bold mb-1">Omar Sy</h5>
+                        <h5 class="card-title fw-bold mb-1">Maman sakho</h5>
                         <p class="card-text text-muted small">Expert PHP Laravel et sécurisation SQL.</p>
                     </div>
                     <div class="card-footer bg-white border-0 pb-3">
@@ -184,7 +184,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col"  data-category="design" data-domain="uiux">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="ratio ratio-1x1 w-100 bg-secondary rounded-top">
                         <img src="images/images 7-7.jpg" class="card-img-top object-fit-cover" alt="Ramata Faye">
@@ -194,7 +194,7 @@
                             <span class="text-muted small fw-bold">UX Research</span>
                             <span class="fw-bold text-dark small">48 000 F / h</span>
                         </div>
-                        <h5 class="card-title fw-bold mb-1">Ramata Faye</h5>
+                        <h5 class="card-title fw-bold mb-1">Matar Wade</h5>
                         <p class="card-text text-muted small">Prototypage rapide et recherche utilisateur sur Figma.</p>
                     </div>
                     <div class="card-footer bg-white border-0 pb-3">
@@ -203,7 +203,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col" data-category="developpement" data-domain="mobile">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="ratio ratio-1x1 w-100 bg-secondary rounded-top">
                         <img src="images/images 8-8.jpg" class="card-img-top object-fit-cover" alt="Cheikh Tidiane">
@@ -213,7 +213,7 @@
                             <span class="text-muted small fw-bold">Mobile</span>
                             <span class="fw-bold text-dark small">65 000 F / h</span>
                         </div>
-                        <h5 class="card-title fw-bold mb-1">Cheikh Tidiane</h5>
+                        <h5 class="card-title fw-bold mb-1">Nabou lo</h5>
                         <p class="card-text text-muted small">Expert Swift et applications natives complexes.</p>
                     </div>
                     <div class="card-footer bg-white border-0 pb-3">
@@ -222,7 +222,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col" data-category="developpement" data-domain="web">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="ratio ratio-1x1 w-100 bg-secondary rounded-top">
                         <img src="images/images 9-9.jpg" class="card-img-top object-fit-cover" alt="Awa Diop">
@@ -232,7 +232,7 @@
                             <span class="text-muted small fw-bold">Fullstack</span>
                             <span class="fw-bold text-dark small">52 000 F / h</span>
                         </div>
-                        <h5 class="card-title fw-bold mb-1">Awa Diop</h5>
+                        <h5 class="card-title fw-bold mb-1">Khady Lam</h5>
                         <p class="card-text text-muted small">Architectures robustes et interfaces dynamiques.</p>
                     </div>
                     <div class="card-footer bg-white border-0 pb-3">
