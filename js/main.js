@@ -1,9 +1,12 @@
 // ======================
 // DARK MODE
+// Ajoute/retire la classe "dark-mode" sur le body au clic, et sauvegarde
+// le choix dans localStorage pour qu'il persiste quand on change de page
 // ======================
 
 const themeToggle = document.getElementById("theme-toggle");
 
+// Au chargement de la page, si un thème sombre était déjà enregistré, on l'applique tout de suite
 if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-mode");
     themeToggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
@@ -25,6 +28,8 @@ themeToggle.addEventListener("click", function () {
 
 // ======================
 // NAVBAR AU SCROLL
+// Ajoute la classe "scrolled" sur la navbar dès qu'on descend de plus de 50px,
+// ce qui déclenche l'effet visuel (ombre, réduction de padding) défini en CSS
 // ======================
 
 window.addEventListener("scroll", function () {
@@ -38,8 +43,12 @@ window.addEventListener("scroll", function () {
     }
 
 });
+
 // ======================
 // ANIMATION FADE-IN AU SCROLL
+// Utilise IntersectionObserver pour détecter quand une section .fade-in
+// entre dans la partie visible de l'écran, et lui ajoute alors la classe
+// .visible qui déclenche la transition CSS (opacité + léger déplacement)
 // ======================
 
 const fadeElements = document.querySelectorAll('.fade-in');
@@ -51,7 +60,7 @@ const fadeObserver = new IntersectionObserver(function (entries) {
         }
     });
 }, {
-    threshold: 0.2
+    threshold: 0.2 // se déclenche dès que 20% de l'élément est visible
 });
 
 fadeElements.forEach(function (el) {
@@ -60,6 +69,8 @@ fadeElements.forEach(function (el) {
 
 // ======================
 // BOUTON RETOUR EN HAUT
+// Le bouton reste caché tant qu'on n'a pas scrollé de plus de 300px,
+// puis remonte la page en douceur (smooth scroll) au clic
 // ======================
 
 const backToTop = document.getElementById("backToTop");
@@ -82,8 +93,12 @@ backToTop.addEventListener("click", function () {
     });
 
 });
+
 // ======================
 // COMPTEURS ANIMÉS AU SCROLL
+// Anime chaque nombre .counter de 0 jusqu'à sa valeur cible (data-target)
+// dès qu'il entre dans le viewport, via requestAnimationFrame pour un
+// rendu fluide. unobserve() empêche l'animation de se relancer à chaque scroll
 // ======================
 
 const counters = document.querySelectorAll('.counter');
@@ -117,8 +132,13 @@ const counterObserver = new IntersectionObserver(function (entries) {
 counters.forEach(function (el) {
     counterObserver.observe(el);
 });
+
 // ======================
 // VALIDATION FORMULAIRE DE CONTACT
+// Empêche l'envoi réel du formulaire (e.preventDefault) et vérifie chaque
+// champ un par un : requis, format email par regex, longueur minimum du
+// message. Affiche une erreur sous le champ concerné ou un message de
+// succès si tout est valide
 // ======================
 
 const contactForm = document.getElementById("contactForm");
@@ -137,7 +157,7 @@ if (contactForm) {
         const sujet = document.getElementById("sujet");
         const message = document.getElementById("message");
 
-        // Regex pour valider le format email
+        // Regex : texte@texte.texte (format email basique)
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         // --- Validation NOM ---
@@ -183,7 +203,7 @@ if (contactForm) {
             clearError(message, "error-message");
         }
 
-        // --- Si tout est valide ---
+        // --- Si tout est valide : affiche le succès et réinitialise le formulaire ---
         if (isValid) {
             document.getElementById("successMessage").classList.remove("d-none");
             contactForm.reset();
@@ -200,27 +220,33 @@ if (contactForm) {
 
 }
 
-// Fonction pour afficher une erreur sur un champ
+// Affiche une bordure rouge et un message d'erreur sous un champ invalide
 function showError(field, errorId, messageText) {
     field.classList.add("is-invalid");
     field.classList.remove("is-valid");
     document.getElementById(errorId).textContent = messageText;
 }
 
-// Fonction pour effacer l'erreur d'un champ valide
+// Affiche une bordure verte et efface le message d'erreur d'un champ valide
 function clearError(field, errorId) {
     field.classList.remove("is-invalid");
     field.classList.add("is-valid");
     document.getElementById(errorId).textContent = "";
 }
+
 // ======================
 // FILTRAGE DYNAMIQUE DES FREELANCES
+// Chaque carte a un attribut data-category (via les 4 boutons) et un
+// attribut data-domain (via le menu déroulant). Au clic/changement, on
+// compare cette valeur au filtre choisi et on cache (display: none) les
+// cartes qui ne correspondent pas, sans recharger la page
 // ======================
 
 const filterButtons = document.querySelectorAll(".filter-btn");
 const domainSelect = document.getElementById("domainFilter");
 const freelanceCards = document.querySelectorAll("main .col[data-category]");
 
+// Filtre par catégorie large (boutons Tous / Développement / Design / Data & IA)
 function filterByCategory(category) {
     freelanceCards.forEach(function (card) {
         if (category === "tous" || card.getAttribute("data-category") === category) {
@@ -231,6 +257,7 @@ function filterByCategory(category) {
     });
 }
 
+// Filtre par domaine précis (menu déroulant)
 function filterByDomain(domain) {
     freelanceCards.forEach(function (card) {
         if (domain === "toutes" || card.getAttribute("data-domain") === domain) {
@@ -244,6 +271,7 @@ function filterByDomain(domain) {
 if (filterButtons.length > 0) {
     filterButtons.forEach(function (btn) {
         btn.addEventListener("click", function () {
+            // Réinitialise le style de tous les boutons, puis met en avant celui cliqué
             filterButtons.forEach(function (b) {
                 b.classList.remove("btn-danger", "active");
                 b.classList.add("btn-outline-danger");
@@ -251,6 +279,7 @@ if (filterButtons.length > 0) {
             btn.classList.remove("btn-outline-danger");
             btn.classList.add("btn-danger", "active");
 
+            // Réinitialise le select pour éviter un conflit entre les deux filtres
             domainSelect.value = "toutes";
             filterByCategory(btn.getAttribute("data-filter"));
         });
@@ -259,6 +288,7 @@ if (filterButtons.length > 0) {
 
 if (domainSelect) {
     domainSelect.addEventListener("change", function () {
+        // Désélectionne les boutons puisque le select prend le relais
         filterButtons.forEach(function (b) {
             b.classList.remove("btn-danger", "active");
             b.classList.add("btn-outline-danger");

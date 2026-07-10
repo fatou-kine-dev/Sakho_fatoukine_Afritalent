@@ -1,4 +1,8 @@
-
+/* ======================
+   VARIABLES CSS GLOBALES
+   Centralise couleurs, polices et espacements pour les réutiliser
+   partout via var(--nom) et faciliter le dark mode
+   ====================== */
 :root{
     --font-main:'Inter',sans-serif;
     --font-heading:'Poppins',sans-serif;
@@ -8,27 +12,42 @@
     --background-color:#ffffff;
     --spacing-md:1rem;
 }
+
+/* Reset de base : supprime les marges/paddings par défaut du navigateur */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family:var(--font-main) ;
     color: var(--text-color);
     background-color: var(--background-color);
-    padding-top: 56px;
+    padding-top: 56px; /* compense la navbar fixed-top */
     line-height: 1.6;
-
 }
+
+/* ======================
+   DARK MODE
+   Redéfinit les variables de couleur quand .dark-mode est ajouté au body,
+   ce qui met à jour automatiquement tous les éléments qui utilisent var(--text-color)
+   et var(--background-color)
+   ====================== */
 body.dark-mode {
     --text-color: #e2e8f0;
     --background-color: #0f172a;
 }
+
+/* Les classes Bootstrap text-dark/text-muted ignorent nos variables,
+   donc on force leur couleur en dark mode */
 body.dark-mode .text-dark,
 body.dark-mode .text-muted {
     color: var(--text-color) !important;
 }
+
+/* Exception : à l'intérieur des cartes/blocs qui restent blancs (bg-white),
+   on garde le texte sombre pour rester lisible sur fond clair */
 body.dark-mode .bg-white .text-dark,
 body.dark-mode .bg-white .text-muted,
 body.dark-mode .card .text-dark,
@@ -40,6 +59,12 @@ h1, h2, h3, .navbar-brand {
     font-family: 'Poppins' , sans-serif;
     font-weight: 700;
 }
+
+/* ======================
+   NAVBAR
+   Fond rose fixe + effet "shrink" (ombre, padding réduit) ajouté
+   dynamiquement en JS via la classe .scrolled au-delà de 50px de scroll
+   ====================== */
 .navbar {
     background-color: var(--primary-color) !important; 
     border-bottom: none !important;
@@ -53,8 +78,10 @@ h1, h2, h3, .navbar-brand {
 .navbar-brand {
     color: white !important;
     font-size: 1.5rem;
-
 }
+
+/* Fond clair/sombre des sections principales, scopé pour ne pas
+   affecter les containers imbriqués dans le hero ou le CTA */
 body > section.container,
 .bg-light {
     background-color: var(--background-color) !important;
@@ -64,6 +91,11 @@ body > section.container,
     color: var(--text-color) !important;
 }
 
+/* ======================
+   SECTION HERO
+   Image en pleine largeur avec le titre centré par-dessus (position absolute),
+   et les cartes de stats flottant en bas de l'image
+   ====================== */
 #hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -123,6 +155,8 @@ img {
     color: white;
     z-index: 2;
 }
+
+/* Cartes de statistiques semi-transparentes posées sur l'image hero */
 .stat-card{
     background-color: rgba(255,255,255,0.2);
     border: 1px solid rgba(255,255,255,0.4);
@@ -148,6 +182,11 @@ img {
     margin: 0;
     font-size: 1rem;
 }
+
+/* ======================
+   CARTES DE SERVICES
+   Passent en rose plein avec texte blanc au survol
+   ====================== */
 .service-card {
     transition: all 0.3s ease;
     cursor: pointer;
@@ -167,13 +206,18 @@ img {
 .service-card:hover h4 {
     color: white !important;
 }
+
+/* ======================
+   BENTO GRID ("Comment ça marche ?")
+   Grille asymétrique en CSS Grid : une carte large (2 colonnes),
+   une carte haute (2 lignes), et une carte normale
+   ====================== */
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     grid-auto-rows: 200px;
     gap: 20px;
 }
-
 
 .bento-item{
     transition: all 0.3s ease;
@@ -195,10 +239,13 @@ img {
     grid-column: span 2;
 }
 
-
 .item-tall {
     grid-row: span 2;
 }
+
+/* ======================
+   TÉMOIGNAGES (carousel)
+   ====================== */
 .temoignage-card{
     max-width: 700px;
 }
@@ -215,6 +262,10 @@ img {
     color: #ffc107;
     font-size: 18px;
 }
+
+/* ======================
+   SECTION CTA (Appel à l'action final)
+   ====================== */
 .cta{
     background: #dc3545;
     color: white;
@@ -240,6 +291,9 @@ img {
     font-weight: 700;
 }
 
+/* ======================
+   FORMULAIRE DE CONTACT
+   ====================== */
 form .form-control{
     border-radius: 10px;
 }
@@ -247,9 +301,6 @@ form .form-control{
 form .btn{
     padding: 10px 25px;
     border-radius: 30px;
-}
-form .form-control{
-    border-radius:10px;
 }
 
 form textarea{
@@ -259,8 +310,25 @@ form textarea{
 iframe{
     border-radius:10px;
 }
+
+/* ======================
+   ANIMATION FADE-IN AU SCROLL
+   État de départ (invisible + décalé) et état final (.visible ajouté par JS)
+   pour les sections qui apparaissent progressivement au scroll
+   ====================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* ==========================
-   RESPONSIVE TABLETTE
+   RESPONSIVE TABLETTE (max-width: 768px)
 ========================== */
 
 @media screen and (max-width: 768px) {
@@ -315,7 +383,7 @@ iframe{
 }
 
 /* ==========================
-   RESPONSIVE MOBILE
+   RESPONSIVE MOBILE (max-width: 576px)
 ========================== */
 
 @media screen and (max-width: 576px) {
@@ -381,13 +449,5 @@ iframe{
         margin-bottom: 25px;
         text-align: center;
     }
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
 
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
 }
